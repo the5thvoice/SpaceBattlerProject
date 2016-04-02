@@ -52,6 +52,22 @@ public class SB_SteeringBehaviours : MonoBehaviour
 
 
     /// <summary>
+    /// determins flee vector
+    /// </summary>
+    /// <param name="fleeTarget"></param>
+    /// <returns>flee direction vector</returns>
+    public Vector3 Flee(Vector3 fleeTarget)
+    {
+        desiredVelocity = transform.position - fleeTarget;
+        desiredVelocity.Normalize();
+        desiredVelocity *= MaxSpeed;
+        if (rb.velocity.magnitude > MaxSpeed)
+            rb.velocity = rb.velocity.normalized * MaxSpeed;
+        return desiredVelocity - (Vector3)rb.velocity;
+
+    }
+    
+    /// <summary>
     /// rotates object to face its target
     /// </summary>
     /// <param name="faceThis"></param>
@@ -66,19 +82,6 @@ public class SB_SteeringBehaviours : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
 
     }
-
-    public Vector3 Flee(Vector3 fleeTarget)
-    {
-        desiredVelocity = transform.position - fleeTarget;
-        desiredVelocity.Normalize();
-        desiredVelocity *= MaxSpeed;
-        if (rb.velocity.magnitude > MaxSpeed)
-            rb.velocity = rb.velocity.normalized * MaxSpeed;
-        return desiredVelocity - (Vector3)rb.velocity;
-
-    }
-    
-
     public void FixedUpdate()
     {
         _target = targetObject.transform.position;
