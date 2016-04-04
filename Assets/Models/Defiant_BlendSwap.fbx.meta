@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: 65dd388fce766ca489e8dd052c4c191c
+timeCreated: 1459791537
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Circle.010
+    100002: //RootNode
+    100004: Defiant_Main_Body
+    100006: Defiant_Main_Body_MeshPart0
+    100008: Defiant_Main_Body_MeshPart1
+    100010: Defiant_Main_Body_MeshPart2
+    100012: Defiant_Main_Body_MeshPart3
+    100014: Deflector_Blue_Glow
+    100016: Impuslse_Red_Glow
+    100018: Phaser_1
+    100020: Phaser_2
+    100022: Phaser_3
+    100024: Phaser_Emitter_Glow
+    100026: Phaser_Lamp
+    100028: Phaser_Lamp.001
+    100030: Phaser_Lamp.002
+    100032: Phaser_Lamp.003
+    100034: Phaser_Lamp.004
+    100036: Phaser_Lamp.005
+    100038: rectcam
+    100040: Sphere.003
+    100042: Sun
+    100044: USS_Defiant
+    100046: WarpBlue_Glow
+    400000: Circle.010
+    400002: //RootNode
+    400004: Defiant_Main_Body
+    400006: Defiant_Main_Body_MeshPart0
+    400008: Defiant_Main_Body_MeshPart1
+    400010: Defiant_Main_Body_MeshPart2
+    400012: Defiant_Main_Body_MeshPart3
+    400014: Deflector_Blue_Glow
+    400016: Impuslse_Red_Glow
+    400018: Phaser_1
+    400020: Phaser_2
+    400022: Phaser_3
+    400024: Phaser_Emitter_Glow
+    400026: Phaser_Lamp
+    400028: Phaser_Lamp.001
+    400030: Phaser_Lamp.002
+    400032: Phaser_Lamp.003
+    400034: Phaser_Lamp.004
+    400036: Phaser_Lamp.005
+    400038: rectcam
+    400040: Sphere.003
+    400042: Sun
+    400044: USS_Defiant
+    400046: WarpBlue_Glow
+    2300000: Circle.010
+    2300002: Defiant_Main_Body_MeshPart0
+    2300004: Defiant_Main_Body_MeshPart1
+    2300006: Defiant_Main_Body_MeshPart2
+    2300008: Defiant_Main_Body_MeshPart3
+    2300010: Deflector_Blue_Glow
+    2300012: Impuslse_Red_Glow
+    2300014: Phaser_1
+    2300016: Phaser_2
+    2300018: Phaser_3
+    2300020: Phaser_Emitter_Glow
+    2300022: Sphere.003
+    2300024: WarpBlue_Glow
+    3300000: Circle.010
+    3300002: Defiant_Main_Body_MeshPart0
+    3300004: Defiant_Main_Body_MeshPart1
+    3300006: Defiant_Main_Body_MeshPart2
+    3300008: Defiant_Main_Body_MeshPart3
+    3300010: Deflector_Blue_Glow
+    3300012: Impuslse_Red_Glow
+    3300014: Phaser_1
+    3300016: Phaser_2
+    3300018: Phaser_3
+    3300020: Phaser_Emitter_Glow
+    3300022: Sphere.003
+    3300024: WarpBlue_Glow
+    4300000: Circle.010
+    4300002: Sphere.003
+    4300004: WarpBlue_Glow
+    4300006: Impuslse_Red_Glow
+    4300008: Phaser_3
+    4300010: Deflector_Blue_Glow
+    4300012: Phaser_2
+    4300014: Phaser_Emitter_Glow
+    4300016: Defiant_Main_Body_MeshPart0
+    4300018: Defiant_Main_Body_MeshPart1
+    4300020: Defiant_Main_Body_MeshPart2
+    4300022: Defiant_Main_Body_MeshPart3
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
