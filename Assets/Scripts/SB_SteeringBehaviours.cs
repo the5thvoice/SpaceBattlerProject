@@ -12,7 +12,7 @@ public class SB_SteeringBehaviours : MonoBehaviour
 {
 
     protected Rigidbody _rb;
-    public Rigidbody rb
+    public Rigidbody Rb
     {
         get
         {
@@ -25,12 +25,12 @@ public class SB_SteeringBehaviours : MonoBehaviour
 
     public AgentState aiState;
 
-    public bool isFleeing = false;
+    public bool IsFleeing = false;
 
 
-    protected Vector3 desiredVelocity, _target;
-    public float MaxSpeed, rotationSpeed;
-    public GameObject targetObject;   
+    protected Vector3 DesiredVelocity, Target;
+    public float MaxSpeed, RotationSpeed, MaxPrediction;
+    public GameObject TargetObject;   
 
 
     /// <summary>
@@ -38,15 +38,15 @@ public class SB_SteeringBehaviours : MonoBehaviour
     /// </summary>
     /// <param name="seekTarget"></param>
     /// <returns>seek direction vector</returns>
-    public Vector3 Seek(Vector3 seekTarget)
+    public virtual Vector3 Seek(Vector3 seekTarget)
     {
 
-        desiredVelocity = seekTarget - transform.position;
-        desiredVelocity.Normalize();
-        desiredVelocity *= MaxSpeed;
-        if (rb.velocity.magnitude > MaxSpeed)
-            rb.velocity = rb.velocity.normalized * MaxSpeed;
-        return desiredVelocity - (Vector3)rb.velocity;
+        DesiredVelocity = seekTarget - transform.position;
+        DesiredVelocity.Normalize();
+        DesiredVelocity *= MaxSpeed;
+        if (Rb.velocity.magnitude > MaxSpeed)
+            Rb.velocity = Rb.velocity.normalized * MaxSpeed;
+        return DesiredVelocity - (Vector3)Rb.velocity;
 
     }
 
@@ -56,14 +56,14 @@ public class SB_SteeringBehaviours : MonoBehaviour
     /// </summary>
     /// <param name="fleeTarget"></param>
     /// <returns>flee direction vector</returns>
-    public Vector3 Flee(Vector3 fleeTarget)
+    public virtual Vector3 Flee(Vector3 fleeTarget)
     {
-        desiredVelocity = transform.position - fleeTarget;
-        desiredVelocity.Normalize();
-        desiredVelocity *= MaxSpeed;
-        if (rb.velocity.magnitude > MaxSpeed)
-            rb.velocity = rb.velocity.normalized * MaxSpeed;
-        return desiredVelocity - (Vector3)rb.velocity;
+        DesiredVelocity = transform.position - fleeTarget;
+        DesiredVelocity.Normalize();
+        DesiredVelocity *= MaxSpeed;
+        if (Rb.velocity.magnitude > MaxSpeed)
+            Rb.velocity = Rb.velocity.normalized * MaxSpeed;
+        return DesiredVelocity - (Vector3)Rb.velocity;
 
     }
     
@@ -72,30 +72,65 @@ public class SB_SteeringBehaviours : MonoBehaviour
     /// </summary>
     /// <param name="faceThis"></param>
     /// <param name="faceAway"></param>
-    public void Face(Vector3 faceThis, bool faceAway)
+    public virtual void Face(Vector3 faceThis, bool faceAway)
     {
         Vector3 dir = (faceThis - transform.position).normalized;
         if (faceAway)
             dir = -dir;
 
         Quaternion lookRotation = Quaternion.LookRotation(dir);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * RotationSpeed);
 
     }
-    public void FixedUpdate()
+
+
+    /// <summary>
+    /// generates a chase vector for target object
+    /// </summary>
+    /// <param name="targetObject"></param>
+    /// <returns>Vector3</returns>
+    public virtual Vector3 Persue(GameObject targetObject)
     {
-        _target = targetObject.transform.position;
+
+        float prediction;
+        Vector3 direction = targetObject.transform.position - transform.position;
+        float distance = direction.magnitude;
+        float speed = Rb.velocity.magnitude;
+        if (speed <= distance/MaxPrediction)
+        {
+            prediction = MaxPrediction;
+        }
+        else
+        {
+            prediction = distance/speed;
+        }
+        Vector3 newTarget = targetObject.transform.position;
+        Vector3 targetVelosity = new Vector3();
+        Rigidbody targetRB = targetObject.GetComponent<Rigidbody>();
+        if (targetRB != null)
+        {
+            targetVelosity = targetRB.velocity;
+        }
+        newTarget += targetVelosity*prediction;
+        return Seek(newTarget);
+
+    }
+
+
+    public virtual void FixedUpdate()
+    {
+        Target = TargetObject.transform.position;
 
         switch (aiState)
         {
             default:
             case AgentState.seek:
-                isFleeing = false;
-                rb.AddForce(Seek(_target));
+                IsFleeing = false;
+                Rb.AddForce(Seek(Target));
                 break;
             case AgentState.flee:
-                isFleeing = true;
-                rb.AddForce(Flee(_target));
+                IsFleeing = true;
+                Rb.AddForce(Flee(Target));
                 break;
                 
 
@@ -108,10 +143,10 @@ public class SB_SteeringBehaviours : MonoBehaviour
 
 
     // Update is called once per frame
-    public void Update()
+    public virtual void Update()
     {
 
-        Face(_target, isFleeing);
+        Face(Target, IsFleeing);
 
     }
 }
