@@ -5,7 +5,8 @@ using System.Collections;
 public enum AgentState
 {
     seek,
-    flee
+    flee,
+    persue
 }
 
 public class SB_SteeringBehaviours : MonoBehaviour
@@ -132,7 +133,12 @@ public class SB_SteeringBehaviours : MonoBehaviour
                 IsFleeing = true;
                 Rb.AddForce(Flee(Target));
                 break;
-                
+            case AgentState.persue:
+                IsFleeing = false;
+                Rb.AddForce(Persue(TargetObject));
+                break;
+
+
 
 
         }
