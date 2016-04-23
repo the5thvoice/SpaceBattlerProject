@@ -32,7 +32,9 @@ public class SB_SteeringBehaviours : MonoBehaviour
 
     protected Vector3 DesiredVelocity, Target;
     public float MaxSpeed, OrbitSpeed, RotationSpeed, MaxPrediction;
-    public GameObject TargetObject;   
+
+    public GameObject TargetObject;
+      
 
 
     /// <summary>
