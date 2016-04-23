@@ -7,6 +7,7 @@ public enum AgentState
     seek,
     flee,
     persue
+    
 }
 
 public class SB_SteeringBehaviours : MonoBehaviour
@@ -30,7 +31,7 @@ public class SB_SteeringBehaviours : MonoBehaviour
 
 
     protected Vector3 DesiredVelocity, Target;
-    public float MaxSpeed, RotationSpeed, MaxPrediction;
+    public float MaxSpeed, OrbitSpeed, RotationSpeed, MaxPrediction;
     public GameObject TargetObject;   
 
 
@@ -117,7 +118,7 @@ public class SB_SteeringBehaviours : MonoBehaviour
 
     }
 
-
+    
     public virtual void FixedUpdate()
     {
         Target = TargetObject.transform.position;
@@ -127,26 +128,29 @@ public class SB_SteeringBehaviours : MonoBehaviour
             default:
             case AgentState.seek:
                 IsFleeing = false;
+                
                 Rb.AddForce(Seek(Target));
                 break;
             case AgentState.flee:
                 IsFleeing = true;
+                
                 Rb.AddForce(Flee(Target));
                 break;
             case AgentState.persue:
                 IsFleeing = false;
+                
                 Rb.AddForce(Persue(TargetObject));
                 break;
-
-
+            
 
 
         }
         
     }
 
+    
 
-
+    
 
     // Update is called once per frame
     public virtual void Update()
