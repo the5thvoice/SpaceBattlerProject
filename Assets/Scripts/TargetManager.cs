@@ -5,12 +5,20 @@ using System;
 public class TargetManager : MonoBehaviour
 {
 
-    public float DetectionRange;
+    public float CloseRange;
 
+    private GameObject _Target;
     public GameObject Target
     {
-        set { GetComponent<SB_SteeringBehaviours>().TargetObject = value; }
+        set
+        {
+            GetComponent<SB_SteeringBehaviours>().TargetObject = value;
+            _Target = value;
+        }
+        get { return _Target; }
     }
+
+    public GameObject previousTarget;
 
     public void OnEnable()
     {
@@ -25,22 +33,15 @@ public class TargetManager : MonoBehaviour
     }
 
 
-    // Use this for initialization
-    void Start()
-    {
-
-        
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
 
     internal void SetTarget(GameObject curTarget)
     {
+        if (Target != null)
+            previousTarget = Target;
+
         Target = curTarget;
+
+
     }
 }
