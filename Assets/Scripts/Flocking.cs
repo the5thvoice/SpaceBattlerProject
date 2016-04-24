@@ -15,23 +15,23 @@ public class Flocking : SB_SteeringBehaviours
         Target = TargetObject.transform.position;
         Vector3 steeringForce = CalculateWeightedPrioritized();
         Rb.AddForce(steeringForce);
-        Face(steeringForce);
+        Face(Target, false);
     }
 
-    public void Face(Vector3 faceThis)
-    {
-        float speed = Rb.velocity.magnitude;
+    //public void Face(Vector3 faceThis)
+    //{
+    //    float speed = Rb.velocity.magnitude;
 
 
 
-        Vector3 dir = faceThis + Rb.velocity* speed;
+    //    Vector3 dir = faceThis + Rb.velocity* speed;
 
-        Face(dir, false);
-
-
+    //    Face(dir, false);
 
 
-    }
+
+
+    //}
 
 
     /// <summary>
