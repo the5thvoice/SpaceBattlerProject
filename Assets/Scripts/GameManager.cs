@@ -55,4 +55,19 @@ public class GameManager : MonoBehaviour
     {
 
     }
+
+
+    public List<GameObject> FindValid(GameObject o)
+    {
+
+        if (Fleet.Contains(o))
+        {
+            return Fleet;
+        }
+
+
+        return null;
+
+        
+    }
 }

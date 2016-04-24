@@ -31,7 +31,7 @@ public class SB_SteeringBehaviours : MonoBehaviour
 
 
     protected Vector3 DesiredVelocity, Target;
-    public float MaxSpeed, OrbitSpeed, RotationSpeed, MaxPrediction, WallAvoidDistance, DistanceToAvoid;
+    public float MaxSpeed,  RotationSpeed, MaxPrediction, WallAvoidDistance, DistanceToAvoid;
 
     public GameObject TargetObject;
 
@@ -123,7 +123,10 @@ public class SB_SteeringBehaviours : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Avoids objects in specified layer
+    /// </summary>
+    /// <returns>Direction as Vector3</returns>
     public virtual Vector3 Avoid()
     {
         RaycastHit detector;
@@ -152,7 +155,7 @@ public class SB_SteeringBehaviours : MonoBehaviour
                 
                 Rb.AddForce(Seek(Target));
                 Face(Target, IsFleeing);
-                Rb.AddForce(Avoid());
+                
                 
                 break;
             case AgentState.flee:
@@ -171,7 +174,8 @@ public class SB_SteeringBehaviours : MonoBehaviour
 
 
         }
-        
+        Rb.AddForce(Avoid());
+
     }
 
     
