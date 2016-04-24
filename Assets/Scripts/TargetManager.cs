@@ -44,4 +44,9 @@ public class TargetManager : MonoBehaviour
 
 
     }
+
+    public void Mode(AgentState SteeringMode)
+    {
+        GetComponent<SB_SteeringBehaviours>().aiState = SteeringMode;
+    }
 }

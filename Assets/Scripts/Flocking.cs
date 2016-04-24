@@ -56,10 +56,23 @@ public class Flocking : SB_SteeringBehaviours
         {
             return SteeringForce;
         }
-        force = Seek(Target) * SeekWight;
-        if (!AccumulateForce(ref SteeringForce, force))
+
+        switch (aiState)
         {
-            return SteeringForce;
+            default:
+                force = Seek(Target)*SeekWight;
+                if (!AccumulateForce(ref SteeringForce, force))
+                {
+                    return SteeringForce;
+                }
+                break;
+            case AgentState.persue:
+                force = Persue(TargetObject)*SeekWight;
+                if (!AccumulateForce(ref SteeringForce, force))
+                {
+                    return SteeringForce;
+                }
+                break;
         }
 
 

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
         get { return _Stations ?? (_Stations = new List<GameObject>()); }
     }
 
+    public GameObject EnemyShip;
 
     StateMachine SM
     {
@@ -27,8 +28,7 @@ public class GameManager : MonoBehaviour
     public delegate void Setup();
     public static event Setup OnSetup;
 
-    public delegate void EnemyArrive();
-    public static event EnemyArrive OnEnemyArrive;
+    
 
 
     public void Awake()
@@ -47,14 +47,16 @@ public class GameManager : MonoBehaviour
         if (OnSetup != null)
             OnSetup();
         SM.SwitchState(new PatrolState());
-
+        Enemy.OnEnemyArrive += AlertToEnemy;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AlertToEnemy()
     {
-
+        SM.SwitchState(new PersueEnemy());
+        GetComponent<AudioSource>().Play();
+        Enemy.OnEnemyArrive -= AlertToEnemy;
     }
+    
 
 
     public List<GameObject> FindValid(GameObject o)
