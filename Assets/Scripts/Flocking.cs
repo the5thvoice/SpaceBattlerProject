@@ -18,20 +18,7 @@ public class Flocking : SB_SteeringBehaviours
         Face(Target, false);
     }
 
-    //public void Face(Vector3 faceThis)
-    //{
-    //    float speed = Rb.velocity.magnitude;
-
-
-
-    //    Vector3 dir = faceThis + Rb.velocity* speed;
-
-    //    Face(dir, false);
-
-
-
-
-    //}
+    
 
 
     /// <summary>
@@ -63,6 +50,11 @@ public class Flocking : SB_SteeringBehaviours
                 return SteeringForce;
             }
             
+        }
+        force = Avoid()*AvoidWeight;
+        if (!AccumulateForce(ref SteeringForce, force))
+        {
+            return SteeringForce;
         }
         force = Seek(Target) * SeekWight;
         if (!AccumulateForce(ref SteeringForce, force))
