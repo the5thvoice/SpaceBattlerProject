@@ -64,6 +64,9 @@ public class PatrolState : State
                 if (wayP == TM.Target)
                     continue;
 
+                if (wayP == TM.previousTarget)
+                    continue;
+
                 float dist = Vector3.Distance(objPos, wayP.transform.position);
 
                 if (curTarget == null)

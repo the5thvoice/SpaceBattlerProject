@@ -25,8 +25,10 @@ public class GameManager : MonoBehaviour
     }
 
     public delegate void Setup();
-
     public static event Setup OnSetup;
+
+    public delegate void EnemyArrive();
+    public static event EnemyArrive OnEnemyArrive;
 
 
     public void Awake()

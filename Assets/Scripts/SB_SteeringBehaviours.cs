@@ -31,9 +31,11 @@ public class SB_SteeringBehaviours : MonoBehaviour
 
 
     protected Vector3 DesiredVelocity, Target;
-    public float MaxSpeed, OrbitSpeed, RotationSpeed, MaxPrediction;
+    public float MaxSpeed, OrbitSpeed, RotationSpeed, MaxPrediction, WallAvoidDistance, DistanceToAvoid;
 
     public GameObject TargetObject;
+
+    public LayerMask WhatToAvoid;
       
 
 
@@ -83,7 +85,8 @@ public class SB_SteeringBehaviours : MonoBehaviour
             dir = -dir;
 
         Quaternion lookRotation = Quaternion.LookRotation(dir);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * RotationSpeed);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.fixedDeltaTime * RotationSpeed);
+        
 
     }
 
@@ -120,6 +123,22 @@ public class SB_SteeringBehaviours : MonoBehaviour
 
     }
 
+
+    public virtual Vector3 Avoid()
+    {
+        RaycastHit detector;
+
+
+        if (!Physics.Raycast(transform.position, Rb.velocity.normalized*WallAvoidDistance,out detector,
+            WallAvoidDistance, WhatToAvoid))
+            return Vector3.zero;
+
+        Vector3 avoidTarget = detector.point + detector.normal * DistanceToAvoid;
+        Face(avoidTarget, false);
+        return Seek(avoidTarget);
+
+    }
+
     
     public virtual void FixedUpdate()
     {
@@ -132,16 +151,21 @@ public class SB_SteeringBehaviours : MonoBehaviour
                 IsFleeing = false;
                 
                 Rb.AddForce(Seek(Target));
+                Face(Target, IsFleeing);
+                Rb.AddForce(Avoid());
+                
                 break;
             case AgentState.flee:
                 IsFleeing = true;
                 
                 Rb.AddForce(Flee(Target));
+                Face(Target, IsFleeing);
                 break;
             case AgentState.persue:
                 IsFleeing = false;
                 
                 Rb.AddForce(Persue(TargetObject));
+                Face(Target, IsFleeing);
                 break;
             
 
@@ -154,11 +178,5 @@ public class SB_SteeringBehaviours : MonoBehaviour
 
     
 
-    // Update is called once per frame
-    public virtual void Update()
-    {
-
-        Face(Target, IsFleeing);
-
-    }
+    
 }
