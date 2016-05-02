@@ -8,6 +8,15 @@ public class PersueEnemy : State {
     public override void Enter()
     {
 
+        SetEnemyAsTarget();
+
+    }
+
+    /// <summary>
+    /// sets the enemy that triggered the state change as the current target for the fleet
+    /// </summary>
+    public void SetEnemyAsTarget()
+    {
         GameObject enemy = GameManager.GM.EnemyShip;
 
         foreach (GameObject ship in GameManager.GM.Fleet)
@@ -18,6 +27,7 @@ public class PersueEnemy : State {
         }
 
     }
+
 
     public override void Exit()
     {

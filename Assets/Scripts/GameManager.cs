@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
         get { return GetComponent<StateMachine>(); }
     }
 
+
+    // Setup event to allow more specfic control of the order in which scripts set up in what order
     public delegate void Setup();
     public static event Setup OnSetup;
 
@@ -46,19 +48,26 @@ public class GameManager : MonoBehaviour
     {
         if (OnSetup != null)
             OnSetup();
-        SM.SwitchState(new PatrolState());
-        Enemy.OnEnemyArrive += AlertToEnemy;
+        SM.SwitchState(new PatrolState()); // sets the initial states of the state machine
+        Enemy.OnEnemyArrive += AlertToEnemy; // suscribes the state chage defination for when the enmey arrives
     }
 
+    /// <summary>
+    /// chages state to the persue enemy state
+    /// </summary>
     public void AlertToEnemy()
     {
-        SM.SwitchState(new PersueEnemy());
+        SM.SwitchState(new PersueEnemy()); 
         GetComponent<AudioSource>().Play();
         Enemy.OnEnemyArrive -= AlertToEnemy;
     }
     
 
-
+    /// <summary>
+    /// gets the list containting submited GameObjct
+    /// </summary>
+    /// <param name="o"></param>
+    /// <returns>List</returns>
     public List<GameObject> FindValid(GameObject o)
     {
 
@@ -66,6 +75,11 @@ public class GameManager : MonoBehaviour
         {
             return Fleet;
         }
+        else if (Stations.Contains(o))
+        {
+            return Stations;
+        }
+
 
 
         return null;

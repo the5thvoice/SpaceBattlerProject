@@ -2,6 +2,10 @@
 using System.Collections;
 using System;
 
+
+/// <summary>
+/// mmanages the current target of the ship it's attached to.
+/// </summary>
 public class TargetManager : MonoBehaviour
 {
 
@@ -34,7 +38,10 @@ public class TargetManager : MonoBehaviour
 
 
     
-
+    /// <summary>
+    /// updates the current target
+    /// </summary>
+    /// <param name="curTarget"></param>
     internal void SetTarget(GameObject curTarget)
     {
         if (Target != null)
@@ -44,6 +51,7 @@ public class TargetManager : MonoBehaviour
 
 
     }
+
 
     public void Mode(AgentState SteeringMode)
     {

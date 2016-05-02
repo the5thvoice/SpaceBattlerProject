@@ -6,6 +6,16 @@ public class PatrolState : State
 {
     public override void Enter()
     {
+
+        SetInitialTarget();
+
+        
+    }
+    /// <summary>
+    /// set the initial target for for each ship in the fleet, based on which station is closet to it
+    /// </summary>
+    private void SetInitialTarget()
+    {
         foreach (GameObject obj in GameManager.GM.Fleet)
         {
             TargetManager TM = obj.GetComponent<TargetManager>();
@@ -39,6 +49,16 @@ public class PatrolState : State
     }
 
     public override void Update()
+    {
+        UpdateTarget();
+
+        
+    }
+
+    /// <summary>
+    /// updtates the current target if a ship has reached the current taget
+    /// </summary>
+    private void UpdateTarget()
     {
         foreach (GameObject obj in GameManager.GM.Fleet)
         {

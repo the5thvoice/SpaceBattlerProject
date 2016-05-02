@@ -10,18 +10,11 @@ public class Station : MonoBehaviour {
 
     }
 
+
     private void setUp()
     {
-        GameManager.GM.Stations.Add(gameObject);
+        GameManager.GM.Stations.Add(gameObject);// adds this station to the list of active stations
         GameManager.OnSetup -= setUp;
     }
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    
 }

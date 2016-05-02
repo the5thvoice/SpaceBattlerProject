@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// State machine that conrols the current state
+/// </summary>
 public class StateMachine : MonoBehaviour
 {
 
@@ -19,6 +22,10 @@ public class StateMachine : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// sets the current state to the submited state
+    /// </summary>
+    /// <param name="NewState"></param>
     public void SwitchState(State NewState)
     {
 

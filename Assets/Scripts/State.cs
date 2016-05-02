@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/// <summary>
+/// template for each state class
+/// </summary>
 public abstract class State { 
     protected GameObject _Entity;
 

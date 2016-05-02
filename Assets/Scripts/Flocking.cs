@@ -79,7 +79,10 @@ public class Flocking : SB_SteeringBehaviours
         return SteeringForce;
     }
 
-
+    /// <summary>
+    /// derives the cohesion steering force
+    /// </summary>
+    /// <returns>Vecter3</returns>
     private Vector3 Cohesion()
     {
         Vector3 steeringForce = Vector3.zero;
@@ -136,7 +139,7 @@ public class Flocking : SB_SteeringBehaviours
     }
 
     /// <summary>
-    /// 
+    /// sums up the weigt valus of the sterring forces 
     /// </summary>
     /// <param name="steeringForce"></param>
     /// <param name="force"></param>
